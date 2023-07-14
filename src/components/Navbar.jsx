@@ -21,27 +21,18 @@ export default function Nav() {
  
   const navList = (
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
+   
       <Typography
         as="li"
         variant="small"
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Albums
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
+        <Link to="/AllPosts" className="flex items-center">
           Posts
-        </a>
+        </Link>
       </Typography>
-      
+  
     </ul>
   );
  
@@ -58,6 +49,16 @@ export default function Nav() {
           </Link>
           <div className="flex items-center gap-4">
             <div className="mr-4 hidden lg:block">{navList}</div>
+           {localStorage.user !== undefined ? <Link to="/Profile">
+            <Button
+              variant="gradient"
+              size="sm"
+              className="hidden lg:inline-block"
+            >
+              <span>Profile</span>
+            </Button>
+            </Link> :
+
             <Link to="LogIn">
             <Button
               variant="gradient"
@@ -66,7 +67,10 @@ export default function Nav() {
             >
               <span>Log In</span>
             </Button>
-            </Link>
+            </Link>}
+
+
+
             <IconButton
               variant="text"
               className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"

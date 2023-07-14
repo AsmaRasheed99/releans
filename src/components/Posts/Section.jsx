@@ -36,7 +36,7 @@ const PostSection = () => {
         const user = usersData?.filter((user) => {
           return user.id == post.userId;
         });
-        console.log(user, post.userId)
+        // console.log(user, post.userId)
         return <Post key={post.id} post={post} user={user[0]}/>;
       })}
     </div>

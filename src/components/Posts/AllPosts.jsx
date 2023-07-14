@@ -6,6 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Post from "./Post";
 
 const AllPosts = () => {
+
+
+  
   const {
     loading: postsLoading,
     data: postsData,

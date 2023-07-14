@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPostComments } from "../../actions/postComments";
-import  { fetchPostDetails } from "../../actions/postDetails";
+import { fetchPostDetails } from "../../actions/postDetails";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import axios, { all } from "axios";
 
 const PostDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [comment, setComment] = useState("");
+  const [allcomments, setallcomments] = useState([]);
 
   const {
     loading: PostDetailsLoading,
@@ -21,14 +25,47 @@ const PostDetails = () => {
     error: postCommentsError,
   } = useSelector((state) => state.PostComments);
 
- 
-
   useEffect(() => {
     dispatch(fetchPostComments(id));
     dispatch(fetchPostDetails(id));
   }, [dispatch]);
 
+  useEffect(() => {
+    setallcomments(postCommentsData)
+  },[postCommentsData]);
 
+
+  const addComment = async (e) => {
+    e.preventDefault();
+    // console.log(postCommentsData)
+    // console.log(PostDetailsData)
+    const postId = PostDetailsData.id;
+    const user = JSON.parse(localStorage.getItem("user"));
+    // console.log(postId , user )
+    const username = user.username;
+    const email = user.email;
+    const newComment = {
+      postId: postId,
+      name: username,
+      email: email,
+      body: comment,
+    };
+    NewComment(newComment);
+  };
+
+  const NewComment = async (newComment) => {
+    try {
+      const response = await axios.post(
+        `https://jsonplaceholder.typicode.com/comments`,
+        newComment
+      );
+      const addedComment = [...allcomments, response.data];
+      setallcomments(addedComment)
+      setComment("")
+        } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -62,8 +99,9 @@ const PostDetails = () => {
                     </span>
                     <div className="w-full bg-white rounded-lg border p-2 my-4">
                       <h3 className="font-bold">Discussion</h3>
-                      <form>
-                        {postCommentsData.map((comment) => {
+                      <form onSubmit={addComment}>
+                        {console.log(allcomments)}
+                        {allcomments?.map((comment) => {
                           return (
                             <div className="flex flex-col" key={comment.id}>
                               <div className="border rounded-md p-3 ml-3 my-3">
@@ -83,23 +121,34 @@ const PostDetails = () => {
                             </div>
                           );
                         })}
-
-                        <div className="w-full px-3 my-2">
-                          <textarea
-                            className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
-                            name="body"
-                            placeholder="Type Your Comment"
-                            required=""
-                            defaultValue={""}
-                          />
-                        </div>
-                        <div className="w-full flex justify-end px-3">
-                          <input
-                            type="submit"
-                            className="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
-                            defaultValue="Post Comment"
-                          />
-                        </div>
+                        {localStorage.user !== undefined ? (
+                          <>
+                            <div className="w-full px-3 my-2">
+                              <textarea
+                                className="bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"
+                                name="body"
+                                placeholder="Type Your Comment"
+                                required=""
+                                value={comment}
+                                onChange={(e) => {
+                                  setComment(e.target.value);
+                                }}
+                              />
+                            </div>
+                            <div className="w-full flex justify-end px-3">
+                              <input
+                                type="submit"
+                                className="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
+                                defaultValue="Post Comment"
+                              />
+                            </div>
+                          </>
+                        ) : (
+                          <Link to="/Login">
+                            {" "}
+                            <button>Log In</button>
+                          </Link>
+                        )}
                       </form>
                     </div>
                   </div>
