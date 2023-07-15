@@ -8,6 +8,7 @@ import {
   Card,
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
+import logo from '../components/images/logo.png'
 
 export default function Nav() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -58,7 +59,7 @@ export default function Nav() {
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link to="/">
             <Typography className="mr-4 cursor-pointer  font-bold text-lg">
-              <img className="h-auto w-20" src="https://o.remove.bg/downloads/6d615658-6489-4c1d-9663-afd0fad8ce1d/Screenshot_2023-07-15_121906-removebg-preview.png" alt="" />
+              <img className="h-auto w-20" src={logo} alt="" />
             </Typography>
           </Link>
           <div className="flex items-center gap-4">
