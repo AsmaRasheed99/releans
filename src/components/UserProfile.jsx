@@ -31,17 +31,17 @@ const UserProfile = () => {
   console.log(user);
   return (
     <>
-      <div className="h-full bg-gray-200 p-8">
+      <div className="h-fullp-8">
         <div className="bg-white rounded-lg shadow-xl pb-8">
           <div className="w-full h-[250px]">
             <img
-              src="https://vojislavd.com/ta-template-demo/assets/img/profile-background.jpg"
+              src="https://cdn.pixabay.com/photo/2017/08/10/02/05/tiles-shapes-2617112_640.jpg"
               className="w-full h-full rounded-tl-lg rounded-tr-lg"
             />
           </div>
           <div className="flex flex-col items-center -mt-20">
             <img
-              src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg"
+              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAACICAMAAAALZFNgAAAAMFBMVEXh4eGjo6Pk5OSgoKDAwMCnp6fU1NTc3NzZ2dnIyMitra3Pz8+7u7vMzMywsLCdnZ0Coyz1AAADHUlEQVR4nO2b2XLrIAxAQZjVLP//twUnvWlSOyhmceeOzkOb9KVnhCKDRBgjCIIgCIIgiBEAANPG6O3FhRbGeik2pLfmIhdgIXIh+J38KgZ2gQoo97D4dnFqtglon/gOyeupKmCk2PPIUZFmogkoua9RkPOWB9SxRmGaiX4Tjy0mepJIPMiPf3kSp2iArXhkEztjcWoLM2txYKkGJIdkmRCSukZhuAaE3Yr6SgqjQwIesTJ5bfxoEUyqFoana6WoPlCDRQJqZfLahLEeiGp2Fxlc01BVZBMZXElI5JfIX8kRtmJF1rEezGALmhkswhxOxI32+DPPGlC4p+/4DTSgkkSO3xihPsBzNq2uvnkenqoFqJcSsU45YsFSydc0Y+u88f6ENel8VdDv0kS4WSfOYnIcExEnemSOCqzwUzXK+YbvqAg+pYA8mzD/2jUS0l/RzWNgFsfFraNXfrllZtfqWYUp66PMRG/VJdF4uGwtZ7i08UwQBEH8t5THizZKqXXNP4xmF4w683/UJj94nZR5B5BS3gRI6fIj2OiJMsBM8E4k8Xu4mP/ofDATNgTA9Oodf1V41uHOr3qoDLC1DJyPJR4y0q+jVPJ2zPOE7Fxll8T9iE0b6BAxsXiOSwydx8AAweGD8TMsLnT8FOXUkKg+0R5JdksWMLWxZiUssc8xA9a9M91HJrxLv6TWDcGQlnaPtmX5pr1ngmurIkwauwS9PBpNADs4Q5m0TGD7aRTOBwQ7nMHR0AVGTiKwnG4Do2e8WM7OgrHTKiynp1qmrwfnZ6daYDtU9wfpfLJCn/p+Q8SGOoK9G4Gh6f5E7cbZJ7QN17oV+aYCv5lgZ/AVj/YRTheTLjcFOph0urHQbNLt5gSENpF+V8FAHd2jRYSj6/1WMO5ktU+u8+wEljOnG8H7T15Bff7gEXHEXQVg9rN2gBB2UIsE2Afrk1dlYNMIzK+J4oGG9IMHfKCtrHVKRJJ2wj19AFXaecdL4rya1OIE0Gpxkr80F8s76Ralp7Z9i4xd4jb43eAuLnayxA+b2/d87t/0oYkrQRAEQRAEMYIvzRkca8qfsGEAAAAASUVORK5CYII="
               className="w-40 border-4 border-white rounded-full"
             />
             <div className="flex items-center space-x-2 mt-2">
@@ -49,7 +49,7 @@ const UserProfile = () => {
             </div>
             <p className="text-blue-500">
               <a href={user?.website} target="_blank">
-              anastasia.net
+              {user?.website}
               </a>
             </p>
             <p className="text-sm text-gray-500">{user?.address.city}</p>

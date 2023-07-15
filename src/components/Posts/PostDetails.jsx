@@ -31,9 +31,8 @@ const PostDetails = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setallcomments(postCommentsData)
-  },[postCommentsData]);
-
+    setallcomments(postCommentsData);
+  }, [postCommentsData]);
 
   const addComment = async (e) => {
     e.preventDefault();
@@ -60,9 +59,9 @@ const PostDetails = () => {
         newComment
       );
       const addedComment = [...allcomments, response.data];
-      setallcomments(addedComment)
-      setComment("")
-        } catch (error) {
+      setallcomments(addedComment);
+      setComment("");
+    } catch (error) {
       console.error(error.message);
     }
   };
@@ -73,7 +72,7 @@ const PostDetails = () => {
         <div className="container w-screen px-5 py-24 mx-auto">
           <div className="flex w-full flex-wrap justify-center ">
             <div className="p-4 md:w-full">
-              <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+              <div className="h-full border-2 bg-white border-gray-600 border-opacity-60 rounded-lg overflow-hidden">
                 <div className="p-6 ">
                   <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"></h2>
                   <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
@@ -97,10 +96,10 @@ const PostDetails = () => {
                       </svg>
                       {postCommentsData.length}
                     </span>
-                    <div className="w-full bg-white rounded-lg border p-2 my-4">
+                    <div className="w-full bg-white rounded-lg border border-gray-800 p-2 my-4">
                       <h3 className="font-bold">Discussion</h3>
                       <form onSubmit={addComment}>
-                        {console.log(allcomments)}
+                        {/* {console.log(allcomments)} */}
                         {allcomments?.map((comment) => {
                           return (
                             <div className="flex flex-col" key={comment.id}>
@@ -146,7 +145,12 @@ const PostDetails = () => {
                         ) : (
                           <Link to="/Login">
                             {" "}
-                            <button>Log In</button>
+                            <div className="w-full flex justify-end px-3">
+
+                            <button className="px-3.5 py-1.5 rounded-md text-white text-sm bg-[#75d5c7]">
+                              Log In
+                            </button>
+                            </div>
                           </Link>
                         )}
                       </form>

@@ -31,7 +31,7 @@ const Photos = () => {
 <div className="grid grid-cols-2 md:grid-cols-10 gap-4 p-10">
   {selectedAlbumImages?.map((photo)=>{
      return (
-        <a href={photo.url} target='_blank'>
+        <a href={photo.url} key={photo.id} target='_blank'>
         <div>
         <img
           className="h-auto max-w-full rounded-lg"

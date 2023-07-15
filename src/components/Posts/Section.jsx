@@ -41,7 +41,7 @@ const PostSection = () => {
       })}
     </div>
     <div className="flex justify-center">
-    <HashLink to="/AllPosts#"><button>see more posts</button> </HashLink>    
+    <HashLink to="/AllPosts#"><button className="btn bg-[#75d5c7]">Check more posts</button> </HashLink>    
     </div>
     </>
   );
