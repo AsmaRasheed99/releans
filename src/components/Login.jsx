@@ -8,6 +8,8 @@ import axios from "axios";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [Error, setError] = useState("")
+
 const Navigate = useNavigate()
   const {
     loading: usersLoading,
@@ -21,35 +23,28 @@ const Navigate = useNavigate()
     dispatch(fetchUsersData());
   }, [dispatch]);
  
- const editPassword = async (id, user)=> {
-  try {
-    const updatedUser = {...user, password:user.email}
-    const response = await axios.put(`https://jsonplaceholder.typicode.com/users/${id}`, updatedUser)
-    console.log(response.data)
-    localStorage.setItem("user", JSON.stringify(response.data));
-    window.location.href="/"
-  } catch (error) {
-    console.error(error.message)
-  }
- }
+
 
   const handleSubmit =  (e) => {
     e.preventDefault();
     usersData.map((user)=>{
-      if (user.email === email){
-        setPassword(user.email)
-        editPassword(user.id , user)
-        if (user.email === password){
-        }else {
-          console.log("incorrect password")
+
+      if (user.email === email) {
+
+        if (user.email === password) {
+          setError("")
+          localStorage.setItem("user", JSON.stringify(user));
+          window.location.href = "/";
+        } else {
+
+          setError("Incorrect password or email");
         }
-      } else {
-        console.log("incorrect email")      }
+      }
     })
   };
   return (
     <>
-      <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12">
+      <div className="min-h-screen  py-6 flex flex-col justify-center sm:py-12 bg-base-200">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-[#75d5c7] to-[#F9D1DC] shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -109,6 +104,7 @@ const Navigate = useNavigate()
                     >
                       Submit
                     </button>
+                    <p className="text-sm text-red-500">{Error}</p>
                   </div>
                 </div>
               </form>

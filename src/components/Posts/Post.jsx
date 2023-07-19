@@ -1,22 +1,8 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
-import { fetchPostComments } from "../../actions/postComments";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react'
+import {useNavigate } from 'react-router-dom'
 
 const Post = ({post, user}) => {
   const Navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const {
-    loading: postCommentsLoading,
-    data: postCommentsData,
-    error: postCommentsError,
-  } = useSelector((state) => state.PostComments);
-
-  useEffect(() => {
-    dispatch(fetchPostComments(post.id));
-  }, [dispatch]);
 
 
   const handlePosts = ((id)=>{
@@ -26,52 +12,56 @@ const Post = ({post, user}) => {
     <>
   {/* component */}
   {/* post card */}
-  <div className="flex bg-white shadow-lg rounded-lg  h-44 w-96 "  onClick={()=>{handlePosts(post.id)}}>
 
-    <div className="flex items-start px-4 py-6">
-      <img
-        className="w-12 h-12 rounded-full object-cover mr-4 shadow"
-        src="https://images.unsplash.com/photo-1542156822-6924d1a71ace?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
-        alt="avatar"
-      />
-      <div className="">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-gray-900 -mt-1">
-          </h2>
-        </div>
-        <p className="text-gray-700">
-                      {user?.username}
-
-          </p>
-        <p className="mt-3 text-gray-700 text-sm">
-        {post.title} 
-
-        </p>
-        <div className="mt-4 flex items-center">
-     
-          <div className="flex  text-gray-700 text-sm mr-8">
+      <article
+      onClick={()=>{handlePosts(post.id)}}
+      className="p-6 hover:scale-105 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 w-full h-full flex flex-col justify-between cursor-pointer">
+        <div className="flex justify-between items-center mb-5 text-gray-500">
+          <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800">
             <svg
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-4 h-4 mr-1"
-              stroke="currentColor"
+              className="mr-1 w-3 h-3"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
+                fillRule="evenodd"
+                d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                clipRule="evenodd"
               />
+              <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
             </svg>
-            <span>
-              {postCommentsData.length}
-            </span>
-          </div>
+            Post
+          </span>
         </div>
-      </div>
-    </div>
-  
-  </div>
+        <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white ">
+        {post.title} 
+        </h2>
+        <p className="mb-5 font-light text-gray-500 dark:text-gray-400 ">
+        {post.body} 
+        </p>
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <img
+              className="w-7 h-7 rounded-full"
+              src="https://st4.depositphotos.com/4329009/19956/v/600/depositphotos_199564354-stock-illustration-creative-vector-illustration-default-avatar.jpg"
+              alt="Bonnie Green avatar"
+            />
+            <span className="font-medium dark:text-white">{user?.username}</span>
+          </div>
+   
+        </div>
+      </article>
+
+
+
+
+
+
+
+
+
+
 </>
 
   )

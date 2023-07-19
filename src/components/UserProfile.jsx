@@ -2,7 +2,11 @@ import React, { useEffect, useState } from "react";
 import { fetchPosts } from "../actions/posts";
 import { useDispatch, useSelector } from "react-redux";
 import Icon from "@mdi/react";
-import { mdiDelete, mdiNoteEdit } from "@mdi/js";
+import { mdiDelete } from "@mdi/js";
+import axios from "axios";
+import EditPost from "./Posts/EditPost";
+import Swal from "sweetalert2";
+import profile from '../components/images/profile.jpg'
 
 const UserProfile = () => {
   const [userPosts, setUserPosts] = useState([]);
@@ -29,13 +33,37 @@ const UserProfile = () => {
     setUserPosts(userPosts);
   }, [postsData]);
   console.log(user);
+
+  const handleDelete = async(id) => {
+ 
+  try {
+     const deleted = await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+     Swal.fire({
+      title: `Your post was successfully deleted`,
+      icon: "success",
+      confirmButtonText: "OK",
+    });
+  } catch (error) {
+    
+    Swal.fire({
+      title: "Error",
+      text: "something went wrong",
+      icon: "error",
+      confirmButtonText: "OK",
+    });
+    console.error(error.message)
+  }
+
+
+  }
+
   return (
     <>
       <div className="h-fullp-8">
         <div className="bg-white rounded-lg shadow-xl pb-8">
-          <div className="w-full h-[250px]">
+          <div className="w-full h-[350px]">
             <img
-              src="https://cdn.pixabay.com/photo/2017/08/10/02/05/tiles-shapes-2617112_640.jpg"
+              src={profile}
               className="w-full h-full rounded-tl-lg rounded-tr-lg"
             />
           </div>
@@ -93,49 +121,8 @@ const UserProfile = () => {
                 </li>
                 <li className="flex items-center border-b py-2 space-x-2">
                   <span className="font-bold w-24">Elsewhere:</span>
-                  <a href="#" title="Facebook">
-                    <svg
-                      className="w-5 h-5"
-                      id="Layer_1"
-                      data-name="Layer 1"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 506.86 506.86"
-                    >
-                      <defs>
-                        <style
-                          dangerouslySetInnerHTML={{
-                            __html: ".cls-1{fill:#1877f2;}.cls-2{fill:#fff;}",
-                          }}
-                        />
-                      </defs>
-                      <path
-                        className="cls-1"
-                        d="M506.86,253.43C506.86,113.46,393.39,0,253.43,0S0,113.46,0,253.43C0,379.92,92.68,484.77,213.83,503.78V326.69H149.48V253.43h64.35V197.6c0-63.52,37.84-98.6,95.72-98.6,27.73,0,56.73,5,56.73,5v62.36H334.33c-31.49,0-41.3,19.54-41.3,39.58v47.54h70.28l-11.23,73.26H293V503.78C414.18,484.77,506.86,379.92,506.86,253.43Z"
-                      />
-                      <path
-                        className="cls-2"
-                        d="M352.08,326.69l11.23-73.26H293V205.89c0-20,9.81-39.58,41.3-39.58h31.95V104s-29-5-56.73-5c-57.88,0-95.72,35.08-95.72,98.6v55.83H149.48v73.26h64.35V503.78a256.11,256.11,0,0,0,79.2,0V326.69Z"
-                      />
-                    </svg>
-                  </a>
-                  <a href="#" title="Twitter">
-                    <svg
-                      className="w-5 h-5"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 333333 333333"
-                      shapeRendering="geometricPrecision"
-                      textRendering="geometricPrecision"
-                      imageRendering="optimizeQuality"
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                    >
-                      <path
-                        d="M166667 0c92048 0 166667 74619 166667 166667s-74619 166667-166667 166667S0 258715 0 166667 74619 0 166667 0zm90493 110539c-6654 2976-13822 4953-21307 5835 7669-4593 13533-11870 16333-20535-7168 4239-15133 7348-23574 9011-6787-7211-16426-11694-27105-11694-20504 0-37104 16610-37104 37101 0 2893 320 5722 949 8450-30852-1564-58204-16333-76513-38806-3285 5666-5022 12109-5022 18661v4c0 12866 6532 24246 16500 30882-6083-180-11804-1876-16828-4626v464c0 17993 12789 33007 29783 36400-3113 845-6400 1313-9786 1313-2398 0-4709-247-7007-665 4746 14736 18448 25478 34673 25791-12722 9967-28700 15902-46120 15902-3006 0-5935-184-8860-534 16466 10565 35972 16684 56928 16684 68271 0 105636-56577 105636-105632 0-1630-36-3209-104-4806 7251-5187 13538-11733 18514-19185l17-17-3 2z"
-                        fill="#1da1f2"
-                      />
-                    </svg>
-                  </a>
-                  <a href="#" title="LinkedIn">
+              
+                  <a href="https://www.linkedin.com/in/asma-rasheed-18b441267/" target="_blank" title="LinkedIn">
                     <svg
                       className="w-5 h-5"
                       xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +139,7 @@ const UserProfile = () => {
                       />
                     </svg>
                   </a>
-                  <a href="#" title="Github">
+                  <a href="https://github.com/AsmaRasheed99?tab=repositories" target="_blank" title="Github">
                     <svg
                       className="w-5 h-5"
                       xmlns="http://www.w3.org/2000/svg"
@@ -187,7 +174,7 @@ const UserProfile = () => {
                           {user?.username}
                         </span>
                         <span>
-                          <Icon path={mdiNoteEdit} color={"blue"} size={1} />
+                          <EditPost id={post.id}/>
                         </span>
                       </div>
                       <div className="flex flex-col items-center justify-between mt-6">
@@ -196,7 +183,7 @@ const UserProfile = () => {
                           <div className="my-5">{post.body}</div>
                         </div>
                       </div>
-                      <Icon className="absolute left-2 bottom-2" color={"red"} path={mdiDelete} size={1} />
+                      <Icon onClick={()=>{handleDelete(post.id)}} className="absolute left-2 bottom-2" color={"red"} path={mdiDelete} size={1}  />
                     </div>
                   );
                 })}

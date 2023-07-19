@@ -7,12 +7,11 @@ import Footer from './components/Footer';
 import NotFound from './components/404';
 import Section from "./components/Albums/Section"
 import Photos from './pages/Photos';
+import Contact from './pages/Contact';
+import About from './pages/About';
 import PostDetails from './components/Posts/PostDetails';
 import AllPosts from './components/Posts/AllPosts';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchComments } from './actions/comments';
-import { useEffect } from 'react';
 
 function App() {
 
@@ -28,6 +27,8 @@ function App() {
       <Route path="Photos/:id" element={<Photos/>}/>
       <Route path="PostDetails/:id" element={<PostDetails/>}/>
       <Route path="AllPosts" element={<AllPosts/>}/>
+      <Route path="Contact" element={<Contact/>}/>
+      <Route path="About" element={<About/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>

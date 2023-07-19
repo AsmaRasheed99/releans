@@ -6,6 +6,7 @@ import { fetchPostDetails } from "../../actions/postDetails";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios, { all } from "axios";
+import { Card } from "@material-tailwind/react";
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -68,11 +69,12 @@ const PostDetails = () => {
 
   return (
     <>
-      <section className="w-screen text-gray-600 body-font ">
+      <section className="w-screen text-gray-600 body-font bg-base-200">
         <div className="container w-screen px-5 py-24 mx-auto">
           <div className="flex w-full flex-wrap justify-center ">
             <div className="p-4 md:w-full">
-              <div className="h-full border-2 bg-white border-gray-600 border-opacity-60 rounded-lg overflow-hidden">
+              <Card>
+              <div className="h-full bg-white rounded-lg overflow-hidden">
                 <div className="p-6 ">
                   <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"></h2>
                   <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
@@ -96,17 +98,20 @@ const PostDetails = () => {
                       </svg>
                       {postCommentsData.length}
                     </span>
-                    <div className="w-full bg-white rounded-lg border border-gray-800 p-2 my-4">
-                      <h3 className="font-bold">Discussion</h3>
+                    <div className="w-full bg-white rounded-lg  p-2 my-4">
+                    <hr className="border-gray-400 mb-5"/>
+
+                      <h3 className="font-bold">Comments</h3>
                       <form onSubmit={addComment}>
                         {/* {console.log(allcomments)} */}
                         {allcomments?.map((comment) => {
                           return (
+                            
                             <div className="flex flex-col" key={comment.id}>
-                              <div className="border rounded-md p-3 ml-3 my-3">
+                              <Card className="m-5 p-3 bg-[#f2f2f27d]">
                                 <div className="flex gap-3 items-center">
                                   <img
-                                    src="https://avatars.githubusercontent.com/u/22263436?v=4"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAACICAMAAAALZFNgAAAAMFBMVEXh4eGjo6Pk5OSgoKDAwMCnp6fU1NTc3NzZ2dnIyMitra3Pz8+7u7vMzMywsLCdnZ0Coyz1AAADHUlEQVR4nO2b2XLrIAxAQZjVLP//twUnvWlSOyhmceeOzkOb9KVnhCKDRBgjCIIgCIIgiBEAANPG6O3FhRbGeik2pLfmIhdgIXIh+J38KgZ2gQoo97D4dnFqtglon/gOyeupKmCk2PPIUZFmogkoua9RkPOWB9SxRmGaiX4Tjy0mepJIPMiPf3kSp2iArXhkEztjcWoLM2txYKkGJIdkmRCSukZhuAaE3Yr6SgqjQwIesTJ5bfxoEUyqFoana6WoPlCDRQJqZfLahLEeiGp2Fxlc01BVZBMZXElI5JfIX8kRtmJF1rEezGALmhkswhxOxI32+DPPGlC4p+/4DTSgkkSO3xihPsBzNq2uvnkenqoFqJcSsU45YsFSydc0Y+u88f6ENel8VdDv0kS4WSfOYnIcExEnemSOCqzwUzXK+YbvqAg+pYA8mzD/2jUS0l/RzWNgFsfFraNXfrllZtfqWYUp66PMRG/VJdF4uGwtZ7i08UwQBEH8t5THizZKqXXNP4xmF4w683/UJj94nZR5B5BS3gRI6fIj2OiJMsBM8E4k8Xu4mP/ofDATNgTA9Oodf1V41uHOr3qoDLC1DJyPJR4y0q+jVPJ2zPOE7Fxll8T9iE0b6BAxsXiOSwydx8AAweGD8TMsLnT8FOXUkKg+0R5JdksWMLWxZiUssc8xA9a9M91HJrxLv6TWDcGQlnaPtmX5pr1ngmurIkwauwS9PBpNADs4Q5m0TGD7aRTOBwQ7nMHR0AVGTiKwnG4Do2e8WM7OgrHTKiynp1qmrwfnZ6daYDtU9wfpfLJCn/p+Q8SGOoK9G4Gh6f5E7cbZJ7QN17oV+aYCv5lgZ/AVj/YRTheTLjcFOph0urHQbNLt5gSENpF+V8FAHd2jRYSj6/1WMO5ktU+u8+wEljOnG8H7T15Bff7gEXHEXQVg9rN2gBB2UIsE2Afrk1dlYNMIzK+J4oGG9IMHfKCtrHVKRJJ2wj19AFXaecdL4rya1OIE0Gpxkr80F8s76Ralp7Z9i4xd4jb43eAuLnayxA+b2/d87t/0oYkrQRAEQRAEMYIvzRkca8qfsGEAAAAASUVORK5CYII="
                                     className="object-cover w-8 h-8 rounded-full 
                    border-2 border-emerald-400  shadow-emerald-400
                    "
@@ -116,8 +121,9 @@ const PostDetails = () => {
                                 <p className="text-gray-600 mt-2">
                                   {comment.body}
                                 </p>
-                              </div>
+                              </Card>
                             </div>
+                        
                           );
                         })}
                         {localStorage.user !== undefined ? (
@@ -137,7 +143,7 @@ const PostDetails = () => {
                             <div className="w-full flex justify-end px-3">
                               <input
                                 type="submit"
-                                className="px-2.5 py-1.5 rounded-md text-white text-sm bg-indigo-500"
+                                className="px-2.5 py-1.5 rounded-md text-white text-sm bg-[#75d5c7]"
                                 defaultValue="Post Comment"
                               />
                             </div>
@@ -158,6 +164,7 @@ const PostDetails = () => {
                   </div>
                 </div>
               </div>
+              </Card>
             </div>
           </div>
         </div>
