@@ -3,7 +3,7 @@ import React from "react";
 const About = () => {
   return (
     <>
-      <section className="flex justify-center pt-20 lg:pt-[120px] pb-12 lg:pb-[90px] overflow-hidden">
+      <section className="flex justify-center pt-20 lg:pt-[120px] pb-12 lg:pb-[90px] bg-base-200 overflow-hidden">
         <div className="container">
           <div className="flex flex-wrap items-center justify-between -mx-4">
             <div className="w-full px-4 lg:w-6/12">

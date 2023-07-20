@@ -183,7 +183,7 @@ const UserProfile = () => {
                           <div className="my-5">{post.body}</div>
                         </div>
                       </div>
-                      <Icon onClick={()=>{handleDelete(post.id)}} className="absolute left-2 bottom-2" color={"red"} path={mdiDelete} size={1}  />
+                      <Icon onClick={()=>{handleDelete(post.id)}} className="absolute left-2 bottom-2 cursor-pointer" color={"red"} path={mdiDelete} size={1}  />
                     </div>
                   );
                 })}

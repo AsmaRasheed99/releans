@@ -35,7 +35,7 @@ const Photos = () => {
      return (
         <a data-aos="flip-up" data-aos-duration="1000" href={photo.url} key={photo.id} target='_blank' >
           <Card>
-        <div className='flex flex-row p-3 hover:scale-105 w-80'>
+        <div className='flex flex-row p-3 hover:scale-105 h-52 lg:w-80'>
         <img
           className="h-auto max-w-full rounded-lg"
           src={photo.thumbnailUrl}

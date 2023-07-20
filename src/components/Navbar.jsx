@@ -87,6 +87,7 @@ export default function Nav() {
   const handleLogOut = () => {
     localStorage.removeItem("user");
     setLoggedIn(false);
+    setOpenNav(false);
     navigate("/");
   };
 
@@ -252,7 +253,12 @@ export default function Nav() {
           {localStorage.user !== undefined ? (
             <>
               <Link to="/Profile">
-                <Button size="sm" fullWidth className="mb-2 bg-[#75d5c7]">
+                <Button
+                  onClick={() => setOpenNav(false)}
+                  size="sm"
+                  fullWidth
+                  className="mb-2 bg-[#75d5c7]"
+                >
                   <span>Profile</span>
                 </Button>{" "}
               </Link>
@@ -267,7 +273,12 @@ export default function Nav() {
             </>
           ) : (
             <Link to="/Login">
-              <Button size="sm" fullWidth className="mb-2 bg-[#75d5c7]">
+              <Button
+                onClick={() => setOpenNav(false)}
+                size="sm"
+                fullWidth
+                className="mb-2 bg-[#75d5c7]"
+              >
                 <span>Log In</span>
               </Button>{" "}
             </Link>

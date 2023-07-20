@@ -81,7 +81,7 @@ const dispatch = useDispatch()
   return (
     <div>
       {/* <Icon path={mdiNoteEdit} color={"blue"} size={1} onClick={handleOpen} /> */}
-        <button className="bg-[#75d5c7a8] text-white hover:bg-white hover:text-black h-10 p-1 rounded-md" onClick={handleOpen} >Add New Post</button>
+        <button className="bg-[#75d5c7a8] text-white hover:bg-white hover:text-black h-10 p-1 rounded-md" onClick={handleOpen} >Add Post</button>
       <Modal
         open={open}
         onClose={handleClose}

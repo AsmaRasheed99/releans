@@ -6,9 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Post from "./Post";
 import Pagination from "@mui/material/Pagination";
 import AddPost from "./AddPost"
-import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { AddNewPost } from "../../actions/addPost";
 const AllPosts = () => {
   const [filterdPosts, setFilterdPosts] = useState(null);
 
@@ -89,7 +87,7 @@ const filteredPostsByTitle = (searchTermPost) => {
 
 
   return (
-    <div className="bg-base-200 px-16">
+    <div className="bg-base-200 lg:px-16">
        <div className="relative w-full flex justify-center items-center pt-5 ">
       <input
         type="search"

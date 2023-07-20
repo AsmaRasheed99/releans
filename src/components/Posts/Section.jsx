@@ -44,7 +44,7 @@ const PostSection = () => {
     className="bg-base-200 sm:p-0 lg:p-5">
       <section className=" dark:bg-gray-900 m-24">
         <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-          <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+          <h2 className=" py-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             Posts
           </h2>
           <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">
@@ -52,7 +52,7 @@ const PostSection = () => {
           </p>
         </div>
       </section>
-      <div data-aos="zoom-in-up" data-aos-duration="1000" className="grid lg:grid-cols-3 gap-10  place-items-center sm:grid-cols-1 md:grid-cols-2 m-16">
+      <div data-aos="zoom-in-up" data-aos-duration="1000" className="grid lg:grid-cols-3 gap-10  place-items-center sm:grid-cols-1 md:grid-cols-2 lg:m-14 md:m-10 my-5">
         {postsData.slice(-3)?.map((post) => {
           const user = usersData?.filter((user) => {
             return user.id == post.userId;
@@ -63,7 +63,7 @@ const PostSection = () => {
       </div>
       <div className="flex justify-center">
         <HashLink to="/AllPosts#">
-          <button className="btn hover:bg-white bg-[#75d5c7a8] text-white  hover:text-black border-white border-2 hover:border-black">Check more posts</button>{" "}
+          <button className="btn mb-5 hover:bg-white bg-[#75d5c7a8] text-white  hover:text-black border-white border-2 hover:border-black">Check more posts</button>{" "}
         </HashLink>
       </div>
       </div>

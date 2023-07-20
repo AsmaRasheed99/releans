@@ -62,7 +62,7 @@ const EditPost = ({id}) => {
   };
   return (
     <div>
-      <Icon path={mdiNoteEdit} color={"blue"} size={1} onClick={handleOpen} />
+      <Icon className="cursor-pointer" path={mdiNoteEdit} color={"blue"} size={1} onClick={handleOpen} />
 
       <Modal
         open={open}
